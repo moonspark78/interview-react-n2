@@ -23,7 +23,11 @@ const getObjectEntries = (obj) => {
     objKey.map(key =>{
         const value = obj[key];
         return [key, value]
-    })
+    });
+
+    return res;
 }
 
-getObjectEntries(person);
+const res= getObjectEntries(person);
+console.log(res);
+
