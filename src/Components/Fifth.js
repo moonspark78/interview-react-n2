@@ -8,10 +8,12 @@ Consigne : appeler l'api : https://jsonplaceholder.typicode.com/todos/ et affich
 export const Fifth = () => {
   const [todos, setTodos] = useState([])
   const [todosPerPage, setTodosPerPage] = useState(10)
-  const [currentPages, setCurrentPages] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
 
   const numOfTotalPages = Math.ceil(todos.length /todosPerPage)
   const pages  =[...Array(numOfTotalPages +1).keys()].slice(1)
+
+  const indexofLastTodo= currentPage *todosPerPage; //40
 
 
   useEffect(() =>{
@@ -33,6 +35,8 @@ export const Fifth = () => {
         todos.map((todo) => (
         <p>{todo.title}</p>
         ))}
+        <br/>
+        <br/>
         <span>Prev</span>
         <p>
           {
