@@ -13,7 +13,10 @@ export const Fifth = () => {
   const numOfTotalPages = Math.ceil(todos.length /todosPerPage)
   const pages  =[...Array(numOfTotalPages +1).keys()].slice(1)
 
-  const indexofLastTodo= currentPage *todosPerPage; //40
+  const indexoffLastTodo= currentPage *todosPerPage; //40
+  const indexOffFirstTodo= indexoffLastTodo -todosPerPage; 
+
+  const visibleTodos = todos.slice(indexOffFirstTodo, indexoffLastTodo)
 
 
   useEffect(() =>{
@@ -32,7 +35,7 @@ export const Fifth = () => {
   return (
     <div>
       {
-        todos.map((todo) => (
+        visibleTodos.map((todo) => (
         <p>{todo.title}</p>
         ))}
         <br/>
@@ -41,7 +44,10 @@ export const Fifth = () => {
         <p>
           {
             pages.map((page) => (
-              <span key={page}>{`${page} | `}</span>
+              <span 
+                key={page}
+                onClick={() => setCurrentPage(page)}
+              >{`${page} | `}</span>
           ))}
         </p>
         <span>Next </span>
