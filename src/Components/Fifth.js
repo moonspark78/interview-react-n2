@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import "./Fifth.css"
 
 /* 
 Consigne : appeler l'api : https://jsonplaceholder.typicode.com/todos/ et afficher les todos a l'écran et implémenter une pagination
@@ -17,6 +18,22 @@ export const Fifth = () => {
   const indexOffFirstTodo= indexoffLastTodo -todosPerPage; 
 
   const visibleTodos = todos.slice(indexOffFirstTodo, indexoffLastTodo)
+
+  const prevPageHandler = () =>{
+    if (currentPage === 1) {
+      return ""
+    } else {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+  const nextPageHandler = () =>{
+    if (currentPage === 20 ) {
+      return ""
+    } else {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
 
 
   useEffect(() =>{
@@ -40,17 +57,18 @@ export const Fifth = () => {
         ))}
         <br/>
         <br/>
-        <span>Prev</span>
+        <span onClick={prevPageHandler}>Prev</span>
         <p>
           {
             pages.map((page) => (
               <span 
+                className={`${currentPage === page ? "active" : ''}`}
                 key={page}
                 onClick={() => setCurrentPage(page)}
               >{`${page} | `}</span>
           ))}
         </p>
-        <span>Next </span>
+        <span onClick={nextPageHandler}>Next</span>
     </div>
   )
 }
